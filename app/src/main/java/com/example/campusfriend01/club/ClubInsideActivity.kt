@@ -1,4 +1,4 @@
-package com.example.campusfriend01.board
+package com.example.campusfriend01.club
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,16 +6,15 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.example.campusfriend01.R
-import com.example.campusfriend01.comment.CommentLVAdapter
-import com.example.campusfriend01.comment.CommentModel
-import com.example.campusfriend01.databinding.ActivityBoardInsideBinding
+import com.example.campusfriend01.board.BoardEditActivity
+import com.example.campusfriend01.board.BoardModel
+import com.example.campusfriend01.databinding.ActivityClubInsideBinding
 import com.example.campusfriend01.utils.FBAuth
 import com.example.campusfriend01.utils.FBRef
 import com.google.android.gms.tasks.OnCompleteListener
@@ -26,104 +25,40 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import java.lang.Exception
 
-class BoardInsideActivity : AppCompatActivity() {
+class ClubInsideActivity : AppCompatActivity() {
 
-    private val TAG = BoardInsideActivity::class.java.simpleName
+    private val TAG = ClubInsideActivity::class.java.simpleName
 
-    private lateinit var binding : ActivityBoardInsideBinding
+    private lateinit var binding : ActivityClubInsideBinding
 
     private lateinit var key: String
 
-    private val commentDataList = mutableListOf<CommentModel>()
-
-    private lateinit var commentAdapter : CommentLVAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_board_inside)
+       //setContentView(R.layout.activity_club_inside)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_board_inside )
-        
-        binding.boardSettingIcon.setOnClickListener { 
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_club_inside,)
+
+        binding.boardSettingIcon.setOnClickListener {
             showDialog()
         }
-
-        //첫번째 방법
-        //BoardFragment.kt에서 intent 데이터 받아옴
-        /*val title = intent.getStringExtra("title").toString()
-        val content = intent.getStringExtra("content").toString()
-        val time = intent.getStringExtra("time").toString()
-
-        binding.titleArea.text = title
-        binding.textArea.text = content
-        binding.timeArea.text = time*/
-
-
-        //두번째 방법
         key = intent.getStringExtra("key").toString()
 
         getBoardData(key)
         getImageData(key)
-
-        binding.commentBtn.setOnClickListener {
-            insertComment(key)
-        }
-
-        getCommentData(key)
-
-        commentAdapter = CommentLVAdapter(commentDataList)
-        binding.commentLV.adapter = commentAdapter
-
     }
 
-    fun getCommentData(key: String){
-
-        val postListener = object  : ValueEventListener{
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-
-                commentDataList.clear()
-
-                for(dataModel in dataSnapshot.children) {
-                    val item = dataModel.getValue(CommentModel::class.java)
-                    commentDataList.add(item!!)
-                }
-
-                //getCommentData() 후 다시 읽어온 후 실행되기 위해서는 아래의 코드가 필요하다
-                commentAdapter.notifyDataSetChanged()
-
-
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
-            }
-        }
-        FBRef.commentRef.child(key).addValueEventListener(postListener)
-
-    }
-
-    fun insertComment(key: String) {
-        FBRef.commentRef
-            .child(key)
-            .push()
-            .setValue(CommentModel(binding.commentArea.text.toString(),
-            FBAuth.getTime()
-                ))
-        Toast.makeText(this, "댓글 입력 완료", Toast.LENGTH_LONG).show()
-        binding.commentArea.setText("")
-
-    }
-    
     private fun showDialog() {
         val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog, null)
         val mBuilder = AlertDialog.Builder(this)
             .setView(mDialogView)
             .setTitle("게시글 수정/삭제")
-        
+
         val alertDialog = mBuilder.show()
         alertDialog.findViewById<Button>(R.id.editBtn)?.setOnClickListener {
             Toast.makeText(this, "수정 페이지로 이동", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this,BoardEditActivity::class.java)
+            val intent = Intent(this, BoardEditActivity::class.java)
             intent.putExtra("key", key)
             startActivity(intent)
         }
@@ -149,13 +84,10 @@ class BoardInsideActivity : AppCompatActivity() {
                     .into(imageViewFromFB)
 
             } else {
-                //이미지가 없으면 이미지가 안 보이게
-                binding.getImageArea.isVisible = false
             }
         })
 
     }
-
 
     private fun getBoardData(key : String) {
 
