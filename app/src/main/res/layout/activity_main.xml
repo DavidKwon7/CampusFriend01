@@ -20,14 +20,25 @@
             android:layout_marginTop="10dp"/>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="HOME"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:text="Campus Friends"
             android:textStyle="bold"
             android:textSize="30sp"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="40dp"
             android:layout_marginTop="15dp"
             android:textColor="@color/black"/>
+
+        <ImageView
+            android:id="@+id/settingBtn"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_settings"
+            tools:layout_editor_absoluteX="317dp"
+            tools:layout_editor_absoluteY="115dp"
+            android:layout_marginRight="20dp"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -38,6 +49,17 @@
 
     </LinearLayout>
 
+    <!--//로그아웃
+    <Button
+        android:id="@+id/logoutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LOGOUT"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>-->
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -47,5 +69,7 @@
         app:navGraph="@navigation/main_nav"
         android:layout_marginTop="60dp"
          />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

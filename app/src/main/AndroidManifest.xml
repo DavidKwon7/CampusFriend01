@@ -12,7 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CampusFriend01">
-        <activity android:name=".board.BoardEditActivity"></activity>
+        <activity android:name=".setting.SettingActivity"></activity>
+        <activity android:name=".auth.JoinActivity" />
+        <activity android:name=".auth.LoginActivity" />
+        <activity android:name=".auth.IntroActivity" />
+        <activity android:name=".club.Club_WriteActivity" />
+        <activity android:name=".club.ClubInsideActivity" />
+        <activity android:name=".club.ClubEditActivity" />
+        <activity android:name=".board.BoardEditActivity" />
         <activity android:name=".board.BoardInsideActivity" />
         <activity android:name=".board.BoardWriteActivity" />
         <activity android:name=".SplashActivity">
