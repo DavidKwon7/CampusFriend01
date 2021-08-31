@@ -35,6 +35,7 @@ class JoinActivity : AppCompatActivity() {
             val email = binding.emailArea.text.toString()
             val password1 = binding.passwordArea1.text.toString()
             val password2 = binding.passwordArea2.text.toString()
+            val nickname = binding.nicknameArea.text.toString()
 
             if(email.isEmpty()) {
                 Toast.makeText(this, "email을 입력해주세요", Toast.LENGTH_SHORT).show()
@@ -47,6 +48,10 @@ class JoinActivity : AppCompatActivity() {
             }
             if(password2.isEmpty()) {
                 Toast.makeText(this, "password check를 입력해주세요", Toast.LENGTH_SHORT).show()
+                var isGoToJoin = false
+            }
+            if(nickname.isEmpty()) {
+                Toast.makeText(this, "nickname을 입력해주세요", Toast.LENGTH_SHORT).show()
                 var isGoToJoin = false
             }
             if (!password1.equals(password2)) {

@@ -16,5 +16,8 @@ class FBRef {
 
         //FB의 realtime DB에서 club이라는 곳에 저장할 것이다
         val clubRef = database.getReference("club")
+
+        //message 이거 맞나??
+        val chatRef = database.getReference("chat")
     }
 }

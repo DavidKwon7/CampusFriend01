@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CampusFriend01">
-        <activity android:name=".setting.SettingActivity"></activity>
+        <activity android:name=".chat.PeopleListActivity"></activity>
+        <activity android:name=".chat.ChatActivity" />
+        <activity android:name=".setting.SettingActivity" />
         <activity android:name=".auth.JoinActivity" />
         <activity android:name=".auth.LoginActivity" />
         <activity android:name=".auth.IntroActivity" />
