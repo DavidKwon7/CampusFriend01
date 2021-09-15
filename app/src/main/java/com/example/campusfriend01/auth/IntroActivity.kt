@@ -14,7 +14,6 @@ class IntroActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_intro)
-
         binding = DataBindingUtil.setContentView(this,R.layout.activity_intro)
 
         binding.loginBtn.setOnClickListener {
@@ -28,7 +27,7 @@ class IntroActivity : AppCompatActivity() {
         }
 
         binding.noAccountBtn.setOnClickListener {
-
+            //구현 귀찮아서 버튼만 만들어 놓고 안 함 ㅋㅋ
 
         }
     }

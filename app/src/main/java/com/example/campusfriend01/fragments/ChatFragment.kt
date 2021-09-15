@@ -10,12 +10,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.campusfriend01.R
-import com.example.campusfriend01.board.BoardListLVAdapter
-import com.example.campusfriend01.board.BoardModel
-import com.example.campusfriend01.chat.ChatActivity
-import com.example.campusfriend01.chat.PeopleListLVAdapter
-import com.example.campusfriend01.chat.PeopleModel
-import com.example.campusfriend01.club.ClubModel
+import com.example.campusfriend01.chat.ChatRoomActivity
+import com.example.campusfriend01.chat.User
+import com.example.campusfriend01.chat.UserAdapter
 import com.example.campusfriend01.databinding.FragmentChatBinding
 import com.example.campusfriend01.utils.FBRef
 import com.google.firebase.database.DataSnapshot
@@ -27,15 +24,16 @@ class ChatFragment : Fragment() {
     private lateinit var binding : FragmentChatBinding
 
 
-    private val peopleDataList = mutableListOf<PeopleModel>()
+    private val peopleDataList = mutableListOf<User>()
     private val peopleKeyList = mutableListOf<String>()
 
     private val TAG = ChatFragment::class.java.simpleName
 
-    private lateinit var peopleRVAdapter : PeopleListLVAdapter
+    private lateinit var peopleRVAdapter : UserAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
     }
 
@@ -47,21 +45,16 @@ class ChatFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_chat, container, false )
 
         //어뎁터 연결하기
-        peopleRVAdapter = PeopleListLVAdapter(peopleDataList)
-        binding.peopleList.adapter = peopleRVAdapter
+        peopleRVAdapter = UserAdapter(peopleDataList)
+        binding.userRecyclerView.adapter = peopleRVAdapter
 
-        binding.peopleList.setOnItemClickListener { parent, view, position, id ->
-            val intent = Intent(context, ChatActivity::class.java)
+        binding.userRecyclerView.setOnItemClickListener { parent, view, position, id ->
+            val intent = Intent(context, ChatRoomActivity::class.java)
             intent.putExtra("key", peopleKeyList[position])
 
             startActivity(intent)
         }
 
-        //임시로 만든 채팅창 이동 버튼 / test용
-        binding.nextPage.setOnClickListener {
-            val intent = Intent(context, ChatActivity::class.java)
-            startActivity(intent)
-        }
 
 
         binding.boardTap.setOnClickListener {

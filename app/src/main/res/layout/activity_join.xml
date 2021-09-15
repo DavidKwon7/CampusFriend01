@@ -63,7 +63,7 @@
             android:background="#999999"></LinearLayout>
 
         <EditText
-            android:id="@+id/nicknameArea"
+            android:id="@+id/edt_name"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="10dp"
