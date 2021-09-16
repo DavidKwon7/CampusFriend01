@@ -1,15 +1,15 @@
 package com.example.campusfriend01.chat
 
-import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.campusfriend01.R
 
-class UserAdapter(val context : Context, val userList:ArrayList<User>):
+class UserAdapter(val context: FragmentActivity?, val userList:ArrayList<User>):
     RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
 
@@ -24,12 +24,13 @@ class UserAdapter(val context : Context, val userList:ArrayList<User>):
         holder.textName.text = currentUser.name
 
         holder.itemView.setOnClickListener {
-            val intent = Intent(context,ChatRoomActivity::class.java)
+            val intent = Intent(context, ChatRoomActivity::class.java)
+
 
             intent.putExtra("name",currentUser.name)
             intent.putExtra("uid",currentUser.uid)
 
-            context.startActivity(intent)
+            context?.startActivity(intent)
         }
     }
 

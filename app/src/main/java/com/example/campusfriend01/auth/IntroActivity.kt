@@ -26,9 +26,6 @@ class IntroActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.noAccountBtn.setOnClickListener {
-            //구현 귀찮아서 버튼만 만들어 놓고 안 함 ㅋㅋ
 
-        }
     }
 }
