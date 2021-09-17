@@ -73,9 +73,9 @@ class ChatRoomActivity : AppCompatActivity() {
             val message = messageBox.text.toString()
             val messageObject = Message(message,senderUid)
 
-            mDbRef.child("chats").child(senderRoom!!).child("message").push()
+            mDbRef.child("chats").child(senderRoom!!).child("messages").push()
                 .setValue(messageObject).addOnSuccessListener {
-                    mDbRef.child("chats").child(receiverRoom!!).child("message").push()
+                    mDbRef.child("chats").child(receiverRoom!!).child("messages").push()
                         .setValue(messageObject)
                 }
 
