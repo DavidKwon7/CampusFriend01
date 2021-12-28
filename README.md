@@ -3,10 +3,21 @@ campusFriend_
 
 <h1>대학 동아리 앱</h1>
 
+사용된 기술
+ * Firebase (Authentication, Realtime Database, storage)
+   * Authentication : 로그인 기능 구현
+   * Realtime Database : 게시판(CRUD) / 댓글 / 채팅 기능 구현 
+   * storage : 이미지 파일 전송 기능 구현
+ * RecyclerView
+ * 하단 NavigationBar
+
+
+
+
 만드는 중...
 
 추가작업
-* 채팅
+* 채팅 (좀 더 보완이 필요하다.)
 * 동아리 홍보 게시판
 * 로그인 및 세부 권한 부여
 
